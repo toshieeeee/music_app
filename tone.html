@@ -1,0 +1,35 @@
+<!-- index.html -->
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Tone.jsサンプル</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://tonejs.github.io/build/Tone.min.js"></script>
+  </head>
+  <body>  
+
+  <h1>Sample of tone</h1>
+  <button id="button">Button</button>
+
+  <script type="text/javascript">
+
+    var synth = new Tone.Synth().toMaster();
+    var melodyList = [
+      'C3', 'D3', 'E3', 'F3',
+      'G3', 'A3', 'B3', 'C4'
+    ];
+  
+    $('#button').on('click', function(){
+      // synth.triggerAttackRelease('C5', '2n');
+      var melody = new Tone.Sequence(setPlay, melodyList).start();
+      Tone.Transport.start();
+
+      function setPlay(time, note) {
+          synth.triggerAttackRelease(note, '8n', time);
+      }
+
+    })
+  </script>
+</body>
+</html>
